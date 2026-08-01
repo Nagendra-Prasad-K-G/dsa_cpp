@@ -8,7 +8,7 @@ add_compile_options(-O0 -Wall -Wextra -Werror -Pedantic)
 
 include_directories(src)
 
-add_executable(dsa
+add_executable(dapp
 src/insertion_sort.cpp
 )
 
