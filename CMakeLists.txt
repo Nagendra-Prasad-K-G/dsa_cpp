@@ -4,7 +4,7 @@ project(dsa)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_compile_options(-O0 -Wall -Wextra -Werror pedantic)
+add_compile_options(-O0 -Wall -Wextra -Werror -pedantic)
 
 include_directories(src)
 
