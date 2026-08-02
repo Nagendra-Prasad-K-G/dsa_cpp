@@ -1,2 +1,3 @@
 build/
 CMmakeLists.txt
+**/CMakeLists.txt
