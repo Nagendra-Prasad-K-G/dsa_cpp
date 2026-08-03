@@ -1,32 +1,48 @@
 #include<print>
+#include<vector>
+#include<random>
 
-int linear_search(int array[], const int size ,const int ele);
+void control(std::vector<int>& array);
+int random_number(std::vector<int>& array);
+int linear_search(const std::vector<int>& array, const int ele);
 
 int main(){
-
-    int array[10] = {1,9,6,5,3,8,7,2,0,4};
-    int ele = 0;
-    std::println(" given array is : ");
-    for(int i:array){
-        std::print(" {} ", i);
-    }
-    std::println("given element to be find in array is : {} ", ele);
-    int element = linear_search(array, 10, ele);
-    if(element!= -1){
-        std::println("element is found at index : {} ", element);
-    }
-    else{
-        std::println(" unable to find the given element in the array ");
-    }
+    std::vector<int> array;
+    control(array);   
     return 0;
 }
 
-int linear_search(int array[],const int size,const int ele){
-    for(int pointer =0; pointer<size; pointer++){
+void control(std::vector<int>& array){
+    int element = random_number(array);
+    int ele = linear_search(array,element);
+    std::println("the element to be found is : {}", element);
+    if(ele == -1){
+        std::println("element is not found in the array");
+    }
+    else{
+        std::println("the element is found at position : {}", ele);
+    }
+}
+
+int random_number(std::vector<int>& array){
+    std::random_device random;
+    std::mt19937 gen(random());
+    std::uniform_int_distribution<int> values(1,5000);
+
+    int arrSize = 1000;
+    for(int i=0; i<arrSize;i++){
+        array.push_back(values(gen));
+    }
+    int element = values(gen);
+    return element;
+}
+
+int linear_search(const std::vector<int>& array, const int ele){
+    
+    for(size_t pointer =0; pointer<array.size(); pointer++){
         if(array[pointer] == ele){
             return pointer;
         }
-       
     }
     return -1;
 }

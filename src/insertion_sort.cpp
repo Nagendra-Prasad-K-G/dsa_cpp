@@ -1,25 +1,43 @@
 #include<print>
+#include<vector>
+#include <random>
 
-void insertion_sort(int array[10]);
+void random_num(std::vector<int>& array);
+void insertion_sort(std::vector<int>& array);
 
 int main(){
-
-    int array[10] = {9,2,3,1,8,4,5,7,6,0};
-    std::println("Before insertion sort array is : ");
-    for(int ele : array){
-        std::println(" {} ", ele);
+    std::vector<int>array;
+    random_num(array);
+    std::println("after sorting the list is : ");
+    for(int i : array){
+        std::print(" {} ", i);
     }
-    insertion_sort(array);
-    std::println("After insertion sort array is : ");
-    for(int ele : array){
-        std::println(" {} ", ele);
-    }
+    std::println();
     return 0;
 }
 
-void insertion_sort(int array[10]){
-    for(int i=1; i<10; i++){
-        int j = i-1;
+void random_num(std::vector<int>& array){
+    std::random_device random;
+    std::mt19937 gen(random());
+    std::uniform_int_distribution<int> values(1,1000);
+
+    int arr_size = 1000;
+    for(int i=0; i<arr_size;i++){
+        array.push_back(values(gen));
+    }
+
+    std::print("unsorted list is :\n");
+    for(int i:array){
+        std::print(" {} ", i);
+    }
+    std::println();
+
+    insertion_sort(array);
+}
+
+void insertion_sort(std::vector<int>& array){
+    for(size_t i=1; i<array.size(); i++){
+        int j = static_cast<int>(i)-1;
         int key = array[i];
         while(j>=0){
             if(key<array[j]){
